@@ -8,9 +8,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Services\TrelloApiService;
 
 class LoginController extends Controller
 {
+    protected $trelloApiService;
+
+    public function __construct()
+    {
+        $this->trelloApiService = new TrelloApiService();
+    }
+
     /**
      * Handle an incoming login request.
      *
@@ -24,6 +32,8 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
+
+        $this->trelloApiService->getBoards();
 
         if ($validator->fails()) {
             return redirect()->route('login')

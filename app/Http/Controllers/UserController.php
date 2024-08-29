@@ -7,7 +7,8 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function getVerifiedUsers() {
+    public function getVerifiedUsers()
+    {
         $users = User::all(); // Fetch all users from the database
         $new_users = [];
         foreach ($users as $user) {
