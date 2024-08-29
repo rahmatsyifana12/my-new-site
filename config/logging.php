@@ -62,7 +62,7 @@ return [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'replace_placeholders' => true,
+            'formatter' => App\Logging\CustomFormatter::class,
         ],
 
         'daily' => [
@@ -131,6 +131,7 @@ return [
             'driver' => 'single',
             'path' => 'php://stdout',
             'level' => 'debug',
+            'formatter' => App\Logging\CustomFormatter::class,
         ],
 
     ],
